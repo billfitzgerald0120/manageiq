@@ -40,16 +40,46 @@ describe "Quota Validation" do
   end
 
   context "VM provisioning quota" do
-    it "vmware calculate_requested" do
+    it "Vmware calculate_requested" do
       setup_model("vmware")
       ws = run_automate_method(vm_attrs)
       check_results(ws.root['quota_requested'], 512.megabytes, 4, 1, 1.gigabytes)
     end
 
-    it "google calculate_requested" do
+    it "Microsoft calculate_requested" do
+      setup_model("microsoft")
+      ws = run_automate_method(vm_attrs)
+      check_results(ws.root['quota_requested'], 512.megabytes, 4, 1, 1.gigabytes)
+    end
+
+    it "Redhat calculate_requested" do
+      setup_model("redhat")
+      ws = run_automate_method(vm_attrs)
+      check_results(ws.root['quota_requested'], 512.megabytes, 4, 1, 1.gigabytes)
+    end
+
+    it "Openstack calculate_requested" do
+      setup_model("openstack")
+      ws = run_automate_method(vm_attrs)
+      check_results(ws.root['quota_requested'], 512.megabytes, 4, 1, 1024)
+    end
+
+    it "Google calculate_requested" do
       setup_model("google")
       ws = run_automate_method(vm_attrs)
       check_results(ws.root['quota_requested'], 10.gigabytes, 4, 1, 1024)
+    end
+
+    it "Amazon calculate_requested" do
+      setup_model("amazon")
+      ws = run_automate_method(vm_attrs)
+      check_results(ws.root['quota_requested'], 512.megabytes, 4, 1, 1024)
+    end
+
+    it "Azure calculate_requested" do
+      setup_model("azure")
+      ws = run_automate_method(vm_attrs)
+      check_results(ws.root['quota_requested'], 512.megabytes, 4, 1, 1024)
     end
   end
 end
